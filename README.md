@@ -1,38 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+https://user-images.githubusercontent.com/96897007/230451342-b549c02d-4c9c-4105-bc1b-2c22bade8a82.mp4
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+-Projeto feito com Next js e React js.Em Next.js e React.js, desenvolvi uma simples plataforma de e-commerce com um carrinho de compras que permite aos usuários adicionar, excluir e editar produtos.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Também podemos implementar um carrossel de imagens para apresentar os produtos de forma mais atraente aos usuários. Para isso, podemos utilizar bibliotecas como react-slick para criar o carrossel e gerenciar as informações do carrinho de compras através do estado do componente React e local storage. Além disso, podemos implementar rotas dinâmicas com Next.js para facilitar a navegação do usuário e otimizar a experiência do usuário. 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Além disso , divide o projeto por componentes , onde eu implementava cada pedaço do projeto com isso , cirei um menu na vertical com links que dão direcionamentos para outras páginas do projeto . Também usei o carrossel para poder ilustrar as imagens que foram solicitadas . Foi um projeto bem simples que pude desenvolver , mais acredito que eu pude aprender e desenvolver muito . E acredito que esse tipo de projeto me ajudou a ser um profissional melhor e buscar dar o melhor naquilo que busco fazer diariamente que é codar . Estou na espectativa para conseguir essa oportunidade . Como falei , fiz um projeto simples sem estilização , mais o que vale apena é que eu dei o meu melhor para aprender e entregar o resultado do teste naquilo que aprendi .
