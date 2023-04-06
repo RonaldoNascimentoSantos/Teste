@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import  Tecnologia from '../../public/assets/Tecnologia.jpg'
+import  Tecnologia from '../../public/assets/tecnologia.jpg'
 import Link from 'next/link';
 
 

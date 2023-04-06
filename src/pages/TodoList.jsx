@@ -1,84 +1,115 @@
-import Link from 'next/link';
+
+
+
 import { useState } from 'react';
+import PageHeader from '../pages/PageHeader';
+import PageTitle from '../pages/PageTitle';
+import Summary from '../pages/Summary';
+import Produtos from '../pages/Produtos';
 
-function Lista() {
-  // estado para armazenar os itens da lista
- 
+function TodoList() {
+  const [produtos, setProdutos] = useState([]);
 
- 
-  const [itens, setItens] = useState([
-    { id: 1, nome: 'Tomate R$ 2,99' },
-    { id: 2, nome: 'Cebola R$ 5,99' },
-    { id: 3, nome: 'Chuchu R$ 4,99' },
-    { id: 4, nome: 'Batata R$ 7,99' },
-    { id: 5, nome: 'Beterraba R$ 1,99' },
-    { id: 6, nome: 'Cenoura R$ 3,50' },
-  ]);
- 
-  // estado para armazenar o valor do input de edição
-  const [novoNome, setNovoNome] = useState('');
+  // Função para adicionar um produto ao carrinho
+  const adicionarProduto = (produto) => {
+    const produtoExistente = produtos.find((p) => p.nome === produto.nome);
+    if (produtoExistente) {
+      // Se o produto já estiver no carrinho, atualiza a quantidade
+      setProdutos(
+        produtos.map((p) =>
+          p.nome === produto.nome
+            ? { ...p, quantidade: p.quantidade + produto.quantidade }
+            : p
+        )
+      );
+    } else {
+      // Se o produto não estiver no carrinho, adiciona ao estado
+      setProdutos([...produtos, produto]);
+    }
+  };
 
-  // estado para armazenar o ID do item que está sendo editado
-  const [idEditando, setIdEditando] = useState(null);
+  // Função para remover um produto do carrinho
+  const removerProduto = (produto) => {
+    setProdutos(produtos.filter((p) => p.nome !== produto.nome));
+  };
 
-  // função para lidar com a exclusão de um item
-  function excluirItem(id) {
-    setItens(itens.filter(item => item.id !== id));
-  }
+  // Função para alterar a quantidade de um produto no carrinho
+  const alterarQuantidade = (produto, quantidade) => {
+    setProdutos(
+      produtos.map((p) =>
+        p.nome === produto.nome ? { ...p, quantidade } : p
+      )
+    );
+  };
 
-  // função para lidar com a edição de um item
-  function editarItem(id, novoNome) {
-    setItens(itens.map(item => {
-      if (item.id === id) {
-        return { ...item, nome: novoNome };
-      } else {
-        return item;
-      }
-    }));
-    setIdEditando(null); // sair do modo de edição
-    setNovoNome(''); // limpar o valor do input de edição
-  }
+  // Função para calcular o preço total dos itens no carrinho
+  const calcularTotal = () => {
+    const subTotal = produtos.reduce((total, p) => total + p.preco * p.quantidade, 0);
+    if (cupom === 'DESCONTO10') {
+      return subTotal * 0.9; // Aplica o desconto de 10%
+    } else {
+      return subTotal;
+    }
+
+  };
+
+  // Estado para armazenar o cupom de desconto aplicado
+  const [cupom, setCupom] = useState('');
+
+  // Função para aplicar um cupom de desconto
+  const aplicarCupom = (cupom) => {
+    setCupom(cupom);
+  };
+
+  // Função para remover o cupom de desconto aplicado
+  const removerCupom = () => {
+    setCupom('');
+  };
 
   return (
-    <div>
-      <ul>
-        {itens.map(item => (
-          <li key={item.id}>
-            {/* exibir o nome do item ou um input para edição */}
-            {idEditando === item.id ? (
-              <input
-                type="text"
-                value={novoNome}
-                onChange={e => setNovoNome(e.target.value)}
+    <>
+      <PageHeader />
+      <main>
+        <PageTitle data={'Seu carrinho'} />
+        <div className='content'>
+          <section>
+            <table>
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Preço</th>
+                  <th>Quantidade</th>
+                  <th>Total</th>
+                  <th>-</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Renderiza a lista de produtos no carrinho */}
+                {produtos.map((produto) => (
+                  <Produtos
+                    key={produto.nome}
+                    produto={produto}
+                    onRemoverProduto={() => removerProduto(produto)}
+                    onAlterarQuantidade={(quantidade) =>
+                      alterarQuantidade(produto, quantidade)
+                    }
+                  />
+                ))}
+              </tbody>
+            </table>
+          </section>
+          <aside>
+            <Summary
+              total={calcularTotal()}
+              cupom={cupom}
+              onAplicarCupom={aplicarCupom}
+              onRemoverCupom={removerCupom}
               />
-            ) : (
-              item.nome
-            )}
-
-            {/* botão para entrar no modo de edição */}
-            <button onClick={() => {
-              setIdEditando(item.id);
-              setNovoNome(item.nome);
-            }}>Editar</button>
-
-            {/* botão para excluir o item */}
-            <button onClick={() => excluirItem(item.id)}>Excluir</button>
-
-            {/* botão para salvar a edição */}
-            {idEditando === item.id && (
-              <button onClick={() => editarItem(item.id, novoNome)}>Salvar</button>
-            )}
-          </li>
-        ))}
-      </ul>
-            
-      <Link href="/">
-                <button>Voltar</button>
-            </Link>
-            
-      
-    </div>
+          </aside>
+        </div>
+        </main>
+  </>
   );
 }
-
-export default Lista;
+              
+export default TodoList;

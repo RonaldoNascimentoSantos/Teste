@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import  Jardim from '../../public/assets/Jardim.jpg'
+import  Jardim from '../../public/assets/jardim.jpg'
 import Link from 'next/link';
 
 

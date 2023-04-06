@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import  Hb from '../../public/assets/Hb.jpg'
+import  Hb from '../../public/assets/hb.jpg'
 import Link from 'next/link';
 
 
